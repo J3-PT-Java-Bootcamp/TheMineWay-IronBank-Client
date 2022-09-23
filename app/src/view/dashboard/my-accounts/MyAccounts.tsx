@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 import { AccountType } from "../../../hooks/api/accounts/useMyAccounts";
 import AccountCard from "./AccountCard";
 
@@ -10,15 +10,20 @@ export default function MyAccounts() {
         <Row
             gutter={[6, 6]}
         >
+            <Col
+                key={'head'}
+                span={24}
+            >
+                <Card>
+                    <h1>My accounts</h1>
+                    <p>Visualize all your acocunts as a card list.</p>
+                </Card>
+            </Col>
             {
                 accoutnTypes.map((accountType) => (
-                    <Col
-                        span={24}
-                    >
-                        <AccountCard
-                            accountType={accountType}
-                        />
-                    </Col>
+                    <AccountCard
+                        accountType={accountType}
+                    />
                 ))
             }
         </Row>

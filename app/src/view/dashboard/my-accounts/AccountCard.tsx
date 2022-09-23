@@ -24,7 +24,7 @@ export default function AccountCard(props: Props) {
     const { OnFetchFinished } = useMyAccounts(props.accountType);
 
     const getAccountTypeTag = () => {
-        switch(props.accountType) {
+        switch (props.accountType) {
             case AccountType.checking: return <Tag color="purple">Checking</Tag>;
             case AccountType.credit: return <Tag color="cyan">Credit</Tag>;
             case AccountType.savings: return <Tag color="orange">Savings</Tag>;
@@ -35,13 +35,13 @@ export default function AccountCard(props: Props) {
     return (
         <OnFetchFinished
             render={(result) => (
-                <Row
-                    gutter={[6, 6]}
-                >
+                <>
                     {
-                        result.data.map((account) => (
+                        result.data.map((account, i) => (
                             <Col
-                                span={24}
+                                key={`${i}-${props.accountType}`}
+                                xs={24}
+                                md={12}
                             >
                                 <Card
                                     hoverable
@@ -66,7 +66,7 @@ export default function AccountCard(props: Props) {
                             </Col>
                         ))
                     }
-                </Row>
+                </>
             )}
         />
     );

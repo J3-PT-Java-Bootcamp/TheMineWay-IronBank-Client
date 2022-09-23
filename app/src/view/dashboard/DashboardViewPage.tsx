@@ -1,4 +1,4 @@
-import { Card, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import Container from "../../components/UI/Container";
 import MyAccounts from "./my-accounts/MyAccounts";
 
@@ -11,13 +11,7 @@ export default function DashboardViewPage() {
                 <Col
                     xs={24}
                 >
-                    <Card
-                        style={{
-                            backgroundColor: 'lightgray',
-                        }}
-                    >
-                        <MyAccounts/>
-                    </Card>
+                    <MyAccounts/>
                 </Col>
             </Row>
         </Container>
