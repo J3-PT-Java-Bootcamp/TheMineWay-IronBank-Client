@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { useAuth } from "../../providers/authentication/AuthenticationProvider";
-import { IgnoreError, RequestOptions } from "../../services/networking/requester";
+import { RequestOptions } from "../../services/networking/requester";
 import { request as requestFunction } from '../../services/networking/requester';
 import { HttpException } from "../../services/networking/types/HttpException";
 import { Error, useError } from "../errors/useError";
@@ -8,7 +8,6 @@ import { Error, useError } from "../errors/useError";
 export type UseRequestOptions = {
     requestOptions?: RequestOptions;
     handleErrors?: boolean;
-    ignoreErrorsOnNotificate?: IgnoreError[];
 }
 
 type HandledRequestOptions<T, R> = {
@@ -32,13 +31,9 @@ export default function useRequest() {
             });
         } catch (e: any) {
 
-            const error: Error = e;
+            const error: Error = e ?? { statusCode: 500 };
 
             if (!(options?.handleErrors === false)) {
-                for (const ignoreError of options?.ignoreErrorsOnNotificate ?? []) {
-                    if ((!ignoreError.code || ignoreError.code === error.statusCode)) throw e;
-                }
-
                 showError(error);
             }
             throw e;

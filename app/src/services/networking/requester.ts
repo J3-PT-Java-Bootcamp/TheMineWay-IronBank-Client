@@ -14,7 +14,6 @@ export type RequestOptions = {
     headers?: RequestHeader[];
     authToken?: string;
     rawUrl?: boolean;
-    ignoreErrors?: IgnoreError[];
     pagination?: RequestPagination;
     sort?: RequestSort;
 }
@@ -25,8 +24,6 @@ export class RequestPagination {
 }
 
 export type RequestSort = [string, 'ascend' | 'descend'][];
-
-export type IgnoreError = { section?: ExceptionSection, code?: number };
 
 export async function request<T>(route: string, requestOptions?: RequestOptions) {
 
@@ -70,14 +67,6 @@ export async function request<T>(route: string, requestOptions?: RequestOptions)
             statusCode: number;
             section: ExceptionSection;
         }> = e;
-
-        const status = error.response?.status;
-
-        if (status && options.ignoreErrors) {
-            for (const ignoreError of options.ignoreErrors) {
-                if ((!ignoreError.code || ignoreError.code === error.response?.data.statusCode) && (!ignoreError.section || error.response?.data.section === ignoreError.section)) return undefined;
-            }
-        }
 
         throw error.response?.data;
     }
