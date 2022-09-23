@@ -1,6 +1,8 @@
-import { Card, Col, Space, Tag } from "antd";
+import { Button, Card, Col, Space, Tag } from "antd";
 import { formatDistance } from "date-fns";
+import { useState } from "react";
 import useMyAccounts, { AccountType } from "../../../hooks/api/accounts/useMyAccounts"
+import AccountTransferModal from "./AccountTransferModal";
 
 type Props = {
     accountType: AccountType;
@@ -21,7 +23,7 @@ export type AccountModel = {
 
 export default function AccountCard(props: Props) {
 
-    const { OnFetchFinished } = useMyAccounts(props.accountType);
+    const { OnFetchFinished, refetch } = useMyAccounts(props.accountType);
 
     const getAccountTypeTag = () => {
         switch (props.accountType) {
@@ -32,10 +34,20 @@ export default function AccountCard(props: Props) {
         }
     }
 
+    const [transferAccount, setTransferAccount] = useState<AccountModel>();
+
     return (
         <OnFetchFinished
             render={(result) => (
                 <>
+                    <AccountTransferModal
+                        onClose={(doRefetch) => {
+                            if (doRefetch) refetch();
+                            setTransferAccount(undefined);
+                        }}
+                        account={transferAccount}
+                    />
+
                     {
                         result.data.map((account, i) => (
                             <Col
@@ -43,7 +55,14 @@ export default function AccountCard(props: Props) {
                                 xs={24}
                                 md={12}
                             >
+
                                 <Card
+                                    actions={[
+                                        <Button
+                                            type="link"
+                                            onClick={() => setTransferAccount(account)}
+                                        >Transfer</Button>
+                                    ]}
                                     hoverable
                                     title={(
                                         <Space>
