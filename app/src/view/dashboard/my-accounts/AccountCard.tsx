@@ -1,4 +1,4 @@
-import { Card, Col, Row, Space, Tag } from "antd";
+import { Card, Col, Space, Tag } from "antd";
 import { formatDistance } from "date-fns";
 import useMyAccounts, { AccountType } from "../../../hooks/api/accounts/useMyAccounts"
 
