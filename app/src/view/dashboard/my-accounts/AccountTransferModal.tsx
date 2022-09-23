@@ -1,5 +1,6 @@
 import { Modal } from "antd";
 import { AccountModel } from "./AccountCard";
+import AccountTransferForm from "./AccountTransferForm";
 
 type Props = {
     account?: AccountModel;
@@ -15,9 +16,10 @@ export default function AccountTransferModal(props: Props) {
         >
             {
                 props.account && (
-                    <>
-                        
-                    </>
+                    <AccountTransferForm
+                        account={props.account}
+                        onFinish={() => props.onClose(true)}
+                    />
                 )
             }
         </Modal>

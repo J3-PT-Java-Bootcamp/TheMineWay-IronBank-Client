@@ -19,6 +19,7 @@ export type AccountModel = {
     };
     createdAt: Date;
     updatedAt: Date;
+    accountType: AccountType;
 }
 
 export default function AccountCard(props: Props) {
@@ -45,7 +46,10 @@ export default function AccountCard(props: Props) {
                             if (doRefetch) refetch();
                             setTransferAccount(undefined);
                         }}
-                        account={transferAccount}
+                        account={transferAccount ? {
+                            ...transferAccount,
+                            accountType: props.accountType
+                        } : undefined}
                     />
 
                     {
