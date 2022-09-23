@@ -13,6 +13,7 @@ export default function AccountTransferModal(props: Props) {
             visible={!!props.account}
             onCancel={() => props.onClose(false)}
             title={`Transfer from account ${props.account?.id}`}
+            footer={null}
         >
             {
                 props.account && (
