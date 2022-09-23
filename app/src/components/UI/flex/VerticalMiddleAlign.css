@@ -1,0 +1,12 @@
+.vertical-middle-align {
+    display: flex;
+    align-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+}
+
+.vertical-middle-align > * {
+    width: 100%;
+}

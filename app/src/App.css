@@ -3,4 +3,19 @@
 div.main-div {
     height: 100vh;
     width: 100vw;
+    background-color: lightblue;
+}
+
+.cursor-pointer-hover:hover {
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container > * {
+    max-width: 100%;
+    width: 85em;
 }
