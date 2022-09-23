@@ -11,13 +11,15 @@ export class UseLoginDTO {
     @MinLength(2)
     @MaxLength(64)
     password!: string;
+
+    remember!: boolean;
 }
 
 export function useLogin() {
 
     const { request } = useRequest();
 
-    return (values: UseLoginDTO) => request('auth/login', {
+    return (values: UseLoginDTO) => request<{ access_token: string }>('auth/login', {
         requestOptions: {
             method: RequestMethod.post,
             payload: values,
