@@ -12,6 +12,7 @@ export default function LoginFormItem(props: Props) {
     return (
         <Form.Item
             {...itemProps.formItem}
+            label="Login"
         >
             <Input
                 type='text'

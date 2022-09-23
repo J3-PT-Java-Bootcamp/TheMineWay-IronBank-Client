@@ -34,7 +34,7 @@ export async function request<T>(route: string, requestOptions?: RequestOptions)
 
     const protocol = options.protocol ?? RequestProtocol.http; // TODO: change to HTTPS
     const host = options.host ?? 'localhost';
-    const port = options.port ?? 4000;
+    const port = options.port ?? 8042;
 
     const url = options.rawUrl ? route : `${protocol}://${host}:${port}${options.apiRoute ? `/${options.apiRoute}` : ''}/${route}`;
 

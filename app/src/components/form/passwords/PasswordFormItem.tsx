@@ -23,6 +23,7 @@ export default function PasswordFormItem(props: Props) {
         <>
             <Form.Item
                 {...itemProps.formItem}
+                label="Password"
             >
                 <Input.Password
                     type='password'
