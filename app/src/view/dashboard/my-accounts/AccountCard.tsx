@@ -1,8 +1,8 @@
 import { Button, Card, Col, Space, Tag } from "antd";
-import { formatDistance } from "date-fns";
 import { useState } from "react";
 import useMyAccounts, { AccountType } from "../../../hooks/api/accounts/useMyAccounts"
 import AccountTransferModal from "./AccountTransferModal";
+import LastActivity from "./LastActivity";
 
 type Props = {
     accountType: AccountType;
@@ -78,11 +78,9 @@ export default function AccountCard(props: Props) {
                                             {getAccountTypeTag()}
                                         </Space>
                                     )}
-                                    extra={(
-                                        <>
-                                            {`Last activity ${formatDistance(new Date(account.updatedAt), new Date(Date.now()))} ago`}
-                                        </>
-                                    )}
+                                    extra={<LastActivity
+                                        updatedAt={account.updatedAt}
+                                    />}
                                 >
                                     <p>Account ID: <b>{account.id}</b></p>
                                 </Card>
