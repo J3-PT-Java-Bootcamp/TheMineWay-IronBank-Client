@@ -1,0 +1,8 @@
+.utility-card-wrapper > .ant-badge.ant-badge-status {
+    width: 100%;
+}
+
+.utility-card-wrapper img.utility-card-banner {
+    width: 100%;
+    object-fit: cover;
+}
